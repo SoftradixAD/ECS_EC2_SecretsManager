@@ -63,6 +63,6 @@ jobs:
 
       - name: Deploy
         run: |
-          # terraform apply --auto-approve
-          terraform taint aws_instance.main_instance
+          terraform apply --auto-approve
+          # terraform taint aws_instance.main_instance
 
