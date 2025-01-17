@@ -14,7 +14,7 @@ resource "aws_security_group" "rds_sg" {
     from_port   = 3306
     to_port     = 3306
     protocol    = "tcp"
-    cidr_blocks = [aws_security_group.main_instance_sg.id]  # Update this to restrict access if needed
+    security_groups = [aws_security_group.main_instance_sg.id]  # Update this to restrict access if needed
   }
 }
 
