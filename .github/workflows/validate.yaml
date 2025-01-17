@@ -64,5 +64,5 @@ jobs:
       - name: Deploy
         run: |
           # terraform apply --auto-approve
-          terraform taint aws_instance.mysql_client_instance
+          terraform taint aws_instance.main_instance
 
