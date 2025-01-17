@@ -15,7 +15,7 @@ resource "aws_security_group" "main_instance_sg" {
 resource "aws_instance" "main_instance" {
   ami           = "ami-00bb6a80f01f03502" # Amazon Linux 2 AMI (update as needed)
   instance_type = "t2.micro"
-  iam_instance_profile = 	"SSMManagedInstanceCore"
+  iam_instance_profile = aws_iam_instance_profile.instance_profile.name
   subnet_id     = aws_subnet.private.id
   key_name      = "softradixad"
   vpc_security_group_ids = [aws_security_group.main_instance_sg.id]
