@@ -28,7 +28,8 @@ resource "aws_instance" "main_instance" {
   user_data = <<-EOF
               #!/bin/bash
               apt-get update -y
-              apt-get install -y mysql-client jq awscli
+              apt-get install -y mysql-client jq
+              snap install aws-cli --classic
 
               # Retrieve MySQL credentials from Secrets Manager
               SECRET_NAME="rds_mysql_credentials"
