@@ -43,6 +43,8 @@ resource "aws_db_instance" "mysql_instance" {
   publicly_accessible  = false 
   skip_final_snapshot  = true
 
-  username      = jsondecode(data.aws_secretsmanager_secret_version.rds_credentials_version.secret_string)["username"]
+  username      = "admin"
   password      = jsondecode(data.aws_secretsmanager_secret_version.rds_credentials_version.secret_string)["password"]
+
+  
 }
