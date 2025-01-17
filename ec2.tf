@@ -1,6 +1,7 @@
 # Create a security group
 resource "aws_security_group" "main_instance_sg" {
   name_prefix = "instance-sg"
+  vpc_id      = aws_vpc.main.id
 
   egress {
     from_port   = 0
