@@ -3,8 +3,9 @@ name: Validate and Deploy the Terraform code
 on:
   push:
     branches:
-      master
-
+      - master
+    paths-ignore:
+      - '.github/workflows/Destroy.yaml'
 jobs:
   validate:
     runs-on: ubuntu-latest
