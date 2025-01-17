@@ -1,11 +1,8 @@
-name: Validate and Deploy the Terraform code
+name: Validate and Destroy the Infrasturcture
 
 on:
   push:
-    branches:
-      master
-    paths:
-      - '.github/workflows/Destroy.yaml' 
+    workflow_dispatch: 
 
 jobs:
   validate:
