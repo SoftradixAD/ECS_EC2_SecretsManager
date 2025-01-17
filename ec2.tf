@@ -49,4 +49,8 @@ resource "aws_instance" "main_instance" {
   tags = {
     Name = "Main Instance"
   }
+
+  lifecycle {
+    create_before_destroy = true  # Force recreation of the instance
+  }
 }
