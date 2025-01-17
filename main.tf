@@ -34,6 +34,8 @@ resource "aws_subnet" "public2" {
   }
 }
 
+
+
 # Private Subnet
 resource "aws_subnet" "private" {
   vpc_id            = aws_vpc.main.id
@@ -43,6 +45,17 @@ resource "aws_subnet" "private" {
     Name = "private-subnet"
   }
 }
+
+# Private Subnet
+resource "aws_subnet" "private2" {
+  vpc_id            = aws_vpc.main.id
+  cidr_block        = "10.0.4.0/24"
+  availability_zone = "ap-south-1b"
+  tags = {
+    Name = "private-subnet"
+  }
+}
+
 
 # Internet Gateway
 resource "aws_internet_gateway" "igw" {
@@ -114,6 +127,12 @@ resource "aws_route" "private" {
 # Associate Private Subnet with Private Route Table
 resource "aws_route_table_association" "private" {
   subnet_id      = aws_subnet.private.id
+  route_table_id = aws_route_table.private.id
+}
+
+# Associate Private Subnet with Private Route Table
+resource "aws_route_table_association" "private2" {
+  subnet_id      = aws_subnet.private2.id
   route_table_id = aws_route_table.private.id
 }
 
