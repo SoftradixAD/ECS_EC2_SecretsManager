@@ -1,9 +1,8 @@
 terraform {
   backend "s3" {
     bucket         = "local-dropbox-backup-india"
-    key            = "local-dropbox-backup-india/state/terraform.tfstate" # Specify the path within the bucket
+    key            = "local-dropbox-backup-india/state/terraform.tfstate" 
     region         = "ap-south-1"
-    # dynamodb_table = "<your-lock-table-name>"    # Optional: For state locking
-    encrypt        = true                        # Encrypt the state file at rest
+    encrypt        = true                        
   }
 }
