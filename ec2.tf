@@ -17,7 +17,7 @@ resource "aws_instance" "main_instance" {
   iam_instance_profile = 	"SSMManagedInstanceCore"
   subnet_id     = aws_subnet.private.id
   key_name      = "softradixad"
-  vpc_security_group_ids = [aws_security_group.main_instance_sg.name]
+  vpc_security_group_ids = [aws_security_group.main_instance_sg.id]
   root_block_device {
     volume_size = 10
     volume_type = "gp3"
