@@ -24,6 +24,28 @@ resource "aws_instance" "main_instance" {
     volume_type = "gp3"
     delete_on_termination = true
   }
+
+  user_data = <<-EOF
+              #!/bin/bash
+              apt-get update -y
+              apt-get install -y mysql-client jq awscli
+
+              # Retrieve MySQL credentials from Secrets Manager
+              SECRET_NAME="rds_mysql_credentials"
+              REGION="ap-south-1"
+              SECRET=$(aws secretsmanager get-secret-value --secret-id $SECRET_NAME --region $REGION --query SecretString --output text)
+
+              MYSQL_USER=$(echo $SECRET | jq -r .username)
+              MYSQL_PASSWORD=$(echo $SECRET | jq -r .password)
+
+              # Export environment variables
+              echo "export MYSQL_USER=$MYSQL_USER" >> /etc/profile
+              echo "export MYSQL_PASSWORD=$MYSQL_PASSWORD" >> /etc/profile
+
+              # Source the profile to set environment variables
+              source /etc/profile
+              EOF
+  
   tags = {
     Name = "Main Instance"
   }
